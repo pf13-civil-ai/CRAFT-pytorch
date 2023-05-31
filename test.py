@@ -53,7 +53,11 @@ parser.add_argument('--mag_ratio', default=1.5, type=float, help='image magnific
 parser.add_argument('--poly', default=False, action='store_true', help='enable polygon type')
 parser.add_argument('--show_time', default=False, action='store_true', help='show processing time')
 parser.add_argument('--test_folder', default='/data/', type=str, help='folder path to input images')
+<<<<<<< HEAD
 parser.add_argument('--refine', default=True, action='store_true', help='enable link refiner')
+=======
+parser.add_argument('--refine', default=False, action='store_true', help='enable link refiner')
+>>>>>>> e332dd8b718e291f51b66ff8f9ef2c98ee4474c8
 parser.add_argument('--refiner_model', default='weights/craft_refiner_CTW1500.pth', type=str, help='pretrained refiner model')
 
 args = parser.parse_args()
@@ -149,8 +153,13 @@ if __name__ == '__main__':
         else:
             refine_net.load_state_dict(copyStateDict(torch.load(args.refiner_model, map_location='cpu')))
 
+<<<<<<< HEAD
         refine_net.eval() 
         args.poly = True 
+=======
+        refine_net.eval()
+        args.poly = True
+>>>>>>> e332dd8b718e291f51b66ff8f9ef2c98ee4474c8
 
     t = time.time()
 
@@ -164,9 +173,13 @@ if __name__ == '__main__':
         # save score text
         filename, file_ext = os.path.splitext(os.path.basename(image_path))
         mask_file = result_folder + "/res_" + filename + '_mask.jpg'
+<<<<<<< HEAD
         print("Saving...............")
         cv2.imwrite(mask_file, score_text)
         print("Saving Done..........")
+=======
+        cv2.imwrite(mask_file, score_text)
+>>>>>>> e332dd8b718e291f51b66ff8f9ef2c98ee4474c8
 
         file_utils.saveResult(image_path, image[:,:,::-1], polys, dirname=result_folder)
 
